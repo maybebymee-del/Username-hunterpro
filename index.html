@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>صائد اليوزرات ULTIMATE | ثلاثي رباعي خماسي</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- شريط الإحصائيات -->
+        <div class="stats-bar">
+            <div class="stat">
+                <i class="fas fa-chart-line"></i>
+                <span id="totalGenerated">0</span>
+                <small>تم التوليد</small>
+            </div>
+            <div class="stat success">
+                <i class="fas fa-check-circle"></i>
+                <span id="totalAvailable">0</span>
+                <small>متاح</small>
+            </div>
+            <div class="stat">
+                <i class="fas fa-clock"></i>
+                <span id="scanTime">0</span>
+                <small>ثانية</small>
+            </div>
+        </div>
+
+        <!-- البطاقة الرئيسية -->
+        <div class="card">
+            <div class="header">
+                <div class="icon"><i class="fas fa-crown"></i></div>
+                <h1>صائد اليوزرات <span class="pro-badge">ULTIMATE</span></h1>
+                <p>فحص تلقائي فوري | ثلاثي - رباعي - خماسي</p>
+                <div class="badges">
+                    <span class="badge"><i class="fas fa-bolt"></i> 3 أحرف 🔥</span>
+                    <span class="badge"><i class="fas fa-gem"></i> 4 أحرف 💎</span>
+                    <span class="badge"><i class="fas fa-star"></i> 5 أحرف ⭐</span>
+                </div>
+            </div>
+
+            <div class="settings-panel">
+                <div class="setting-group">
+                    <label><i class="fas fa-keyboard"></i> الأحرف المسموحة</label>
+                    <input type="text" id="chars" value="abcdefghijklmnopqrstuvwxyz0123456789" class="modern-input">
+                </div>
+
+                <div class="setting-row">
+                    <div class="setting-group">
+                        <label><i class="fas fa-hashtag"></i> عدد اليوزرات</label>
+                        <input type="number" id="count" value="100" min="1" max="500" class="modern-input">
+                    </div>
+                    <div class="setting-group">
+                        <label><i class="fas fa-text-height"></i> طول اليوزر</label>
+                        <select id="length" class="modern-select">
+                            <option value="3">3 أحرف 🔥 (نادر جداً)</option>
+                            <option value="4" selected>4 أحرف 💎 (مميز)</option>
+                            <option value="5">5 أحرف ⭐ (جيد)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="filter-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="showOnlyAvailable"> عرض المتاح فقط <span class="available-badge">✅</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="autoCopy"> نسخ تلقائي عند الضغط
+                    </label>
+                </div>
+
+                <button id="generateBtn" class="btn-primary">
+                    <i class="fas fa-rocket"></i> بدء التوليد والفحص
+                </button>
+            </div>
+        </div>
+
+        <!-- لوحة النتائج -->
+        <div class="results-card">
+            <div class="results-header">
+                <h3><i class="fas fa-list"></i> النتائج <span id="resultCount"></span></h3>
+                <div class="results-actions">
+                    <button id="exportBtn" class="btn-icon" title="تصدير المتاح فقط"><i class="fas fa-download"></i></button>
+                    <button id="clearBtn" class="btn-icon" title="مسح الكل"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+            <div id="results" class="results-grid">
+                <div class="empty-state">
+                    <i class="fas fa-search"></i>
+                    <p>اضغط على "بدء التوليد" لبدء الفحص التلقائي</p>
+                    <small>سيظهر باللون الأخضر ✅ المتاح | باللون الأحمر ❌ المحجوز</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: translateX(-50%) scale(1); }
+            80% { opacity: 1; transform: translateX(-50%) scale(1); }
+            100% { opacity: 0; transform: translateX(-50%) scale(0.8); display: none; }
+        }
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .available-badge {
+            font-size: 12px;
+        }
+        #resultCount {
+            font-size: 14px;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 8px;
+        }
+    </style>
+
+    <script src="script.js"></script>
+</body>
+</html>
