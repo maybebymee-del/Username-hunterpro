@@ -66,10 +66,6 @@ body {
     color: #00ff88;
 }
 
-.stat.danger i {
-    color: #ff4444;
-}
-
 /* البطاقة الرئيسية */
 .card {
     background: rgba(255,255,255,0.1);
@@ -219,6 +215,11 @@ h1 {
     box-shadow: 0 10px 25px rgba(255,215,0,0.4);
 }
 
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 /* النتائج */
 .results-card {
     background: rgba(255,255,255,0.1);
@@ -258,12 +259,13 @@ h1 {
 
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 12px;
     max-height: 500px;
     overflow-y: auto;
 }
 
+/* تنسيق بطاقة اليوزر مع زر النسخ */
 .username-card {
     background: rgba(0,0,0,0.5);
     border-radius: 12px;
@@ -271,14 +273,32 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    cursor: pointer;
     transition: all 0.3s ease;
     border-right: 4px solid #ffd700;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.username-card:hover {
-    transform: translateX(5px) scale(1.02);
-    background: rgba(0,0,0,0.7);
+.username-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.username-card .username {
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+.username-card .status {
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .username-card.available {
@@ -291,24 +311,38 @@ h1 {
     opacity: 0.7;
 }
 
-.username-card .username {
-    font-family: monospace;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
-.username-card .status {
-    font-size: 12px;
-    font-weight: 600;
-}
-
 .username-card.available .status {
     color: #00ff88;
 }
 
 .username-card.unavailable .status {
     color: #ff4444;
+}
+
+/* زر النسخ */
+.copy-btn {
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #000;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Cairo', sans-serif;
+}
+
+.copy-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 10px rgba(255,215,0,0.4);
+}
+
+.copy-btn i {
+    font-size: 12px;
 }
 
 .empty-state {
@@ -367,7 +401,38 @@ h1 {
         font-size: 24px;
     }
     
-    .username-card .username {
-        font-size: 14px;
+    .results-grid {
+        grid-template-columns: 1fr;
     }
+    
+    .username-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .username-info {
+        justify-content: center;
+    }
+    
+    .copy-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 8px;
+    }
+}
+
+/* أنيميشن للإشعارات */
+@keyframes fadeOut {
+    0% { opacity: 1; transform: translateX(-50%) scale(1); }
+    80% { opacity: 1; transform: translateX(-50%) scale(1); }
+    100% { opacity: 0; transform: translateX(-50%) scale(0.8); display: none; }
+}
+
+#resultCount {
+    font-size: 14px;
+    background: rgba(255,255,255,0.2);
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
 }
